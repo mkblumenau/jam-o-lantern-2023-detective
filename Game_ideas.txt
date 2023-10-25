@@ -1,0 +1,11 @@
+Concepts for what to add:
+	Evidence collection
+		This can be a page in the menu accessible only in the game
+			It shows a list of what evidence the player has found, along with descriptions
+			Maybe use an array to collect the names of all evidence shown
+			In the menu, for each possible piece of evidence in the array, show some text describing it
+			
+	Cooperation/pressure meters
+		Meters for all players are shown in a page in the menu
+		Meters for currently-relevant characters are shown onscreen
+			Use screen bars
