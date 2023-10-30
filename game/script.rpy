@@ -4,7 +4,17 @@
 # name of the character.
 
 define v = Character("Valerie")
-define m = Character("Marshall")
+define m = Character("Marshall", image="marshall")
+
+# Declare splash images:
+image cover:
+    "/images/splash/game cover.png"
+
+image cover_text:
+    "/images/splash/extraordinary detective marshall.png"
+
+image marshall_end:
+    "/images/splash/marshall end.png"
 
 
 # The game starts here.
@@ -23,13 +33,14 @@ label start:
 
     "Temporary text" "The text that's in here now is just a placeholder. But if we make the text really long then we can see the effect of it on this textbox design, which may or not be as we desire."
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+    #This is just to test that the sprites for Marshall are displaying properly.
+    show marshall annoyed at center:
+        zoom 0.2
 
-    #show eileen happy
+    m "I should be annoyed."
 
-    # These display lines of dialogue.
+    #show m smile
+    m smile "But now I smile."
 
     jump act1
 
@@ -42,6 +53,10 @@ label act1:
     scene bg room
 
     "Divine light except idk how to write it yet"
+
+    #show valerie at left
+    show marshall neutral at right:
+        zoom 0.2
 
     v "I see someone decided to take his job seriously today."
 
