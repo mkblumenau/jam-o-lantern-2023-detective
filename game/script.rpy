@@ -16,6 +16,18 @@ image cover_text:
 image marshall_end:
     "/images/splash/marshall end.png"
 
+image marshall_arrested_end:
+    "/images/splash/marshall arrested end.png"
+
+image ransom_note:
+    "/images/items/ransom note.png"
+
+image remote:
+    "/images/items/remote.png"
+
+image switchblade:
+    "/images/items/switchblade.png"
+
 
 # The game starts here.
 
