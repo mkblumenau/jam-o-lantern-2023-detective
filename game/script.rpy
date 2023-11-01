@@ -5,6 +5,7 @@
 
 define v = Character("Valerie")
 define m = Character("Marshall", image="marshall")
+define h = Character("Hibiki", image="hibiki")
 
 # Declare splash images:
 image cover:
