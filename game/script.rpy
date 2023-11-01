@@ -7,6 +7,7 @@ define v = Character("Valerie")
 define m = Character("Marshall", image="marshall")
 define h = Character("Hibiki", image="hibiki")
 
+
 # Declare splash images:
 image cover:
     "/images/splash/game cover.png"
@@ -30,6 +31,14 @@ image switchblade:
     "/images/items/switchblade.png"
 
 
+# Define sounds.
+define audio.beaming = "/audio/beaming-mirror-1.ogg"
+define audio.pageflip = "/audio/page-flip.ogg"
+define audio.penclick = "/audio/pen-click.wav"
+define audio.tablepound = "/audio/table-pound.ogg"
+define audio.static = "/audio/tv-static.ogg"
+
+
 # The game starts here.
 
 label start:
@@ -50,8 +59,10 @@ label start:
     show marshall annoyed at center:
         zoom 0.2
 
+    play sound beaming
     m "I should be annoyed."
 
+    play sound penclick
     #show m smile
     m smile "But now I smile."
 
