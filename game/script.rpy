@@ -111,7 +111,12 @@ label act1_start:
 
     What do you want to remember?
     """
-    
+
+    default act1_kartoon_seen = False
+    jump act1_tv_menu
+
+
+label act1_tv_menu:   
     menu:
         # At the moment, the only one of these that's complete is DD News.
         "DD News":
@@ -129,13 +134,33 @@ label act1_start:
 
         "USABN":
             "It flips to the channel the moment you think of it."
+            nm """
+            This is USABN, the only broadcasting network bringing you the truth, and only the honest truth.
+
+            Violent and petty crime are on the rise across the country. Last night, a group of teen delinquents in San Fontista broke into a hunting goods store, stealing over 40 knives and firearms.
+
+            The teens have since been caught, but with the minor protection laws in this country, they're unlikely to face any substantial punishment.
+
+            What has happened to this world? How are we going to be safe if these criminals just keep getting let loose?
+
+            Thieves, gangsters, murderers- they're all walking in broad daylight nowadays.
+
+            Police, politicians, all across the country! Do something already!
+
+            Save us! Save the youth!
+            """
+
+            "The program ends. Finally."
 
         "Orenji Local News":
             "It flips to the channel the moment you think of it."
 
-        "Kartoon Network":
-            "It flips to the channel the moment you think of it."
+        "Kartoon Network" if not act1_kartoon_seen:
+            "As hard as you try, you simply can’t imagine what shenanigans would be playing on this channel."
+            $ act1_kartoon_seen = True
+            jump act1_tv_menu
 
+    # If it doesn't jump from Kartoon Network, it should go here after the choice.
     stop music
     jump act1_crimescene
 
