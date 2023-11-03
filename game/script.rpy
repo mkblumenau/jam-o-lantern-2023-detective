@@ -6,8 +6,10 @@
 define v = Character("Valerie", image="valerie_virde")
 define m = Character("Marshall", image="marshall")
 define h = Character("Hibiki", image="hibiki")
+define r = Character("Risumane", image="risumane")
 define nm = Character("Male newscaster", what_italic=True)
 define nf = Character("Female newscaster", what_italic=True)
+define disembodied_voice = Character("???")
 
 
 # Declare splash images:
@@ -113,6 +115,7 @@ label act1_start:
     """
 
     default act1_kartoon_seen = False
+    default one_show_left = True
     jump act1_tv_menu
 
 
@@ -154,6 +157,15 @@ label act1_tv_menu:
 
         "Orenji Local News":
             "It flips to the channel the moment you think of it."
+            nf "{i}Thank you for tuning in to OLN, your local news channel for everything happening in Orenji.{/i}"
+            nf "{i}The vehicular manslaughter case that shocked the town three months ago still has no clear perpetrator.{/i}"
+            nf "{i}We have just received a statement from Chief Rismaune of the OPD regarding the incident.{/i}"
+            r "{i}Good evening, ladies and gentlemen. The OPD is still actively investigating the death of Rex Radoncic, a good soul snuffed out far too early.{/i}"
+            r "{i}According to our sources, he was fatally struck by a vehicle in the outskirts of town in the early hours of the day.{/i}"
+            r "{i}Our investigation team is working hard to unveil the truth behind the tragedy. We offer our heartfelt condolences to the family of the victim, and hope to finally bring this perpetrator to justice.{/i}"
+            r "{i}If you have any tips related to the incident, please call…{/i}"
+            "The program ends."
+
 
         "Kartoon Network" if not act1_kartoon_seen:
             "As hard as you try, you simply can’t imagine what shenanigans would be playing on this channel."
@@ -161,11 +173,70 @@ label act1_tv_menu:
             jump act1_tv_menu
 
     # If it doesn't jump from Kartoon Network, it should go here after the choice.
-    stop music
-    jump act1_crimescene
+
+    if one_show_left:
+        "You have time to watch one more program. "
+        "What do you want to remember?"
+        $ one_show_left = False
+        jump act1_tv_menu
+    else:
+        stop music
+
+        "You are finished watching TV. A heavy weight burdens your shoulders."
+        "Despite all of your greatest efforts, the world is still plagued with dirt and evil."
+        "You think of all the innocent people close to you. "
+        "How can you protect them? "
+        "Your tired eyes blink at the TV screen. "
+
+        # <insert holy beam of light sfx, fade in and fade out white screen quickly (flash)>
+
+        "A comforting voice rumbles from the tinny speakers."
+        disembodied_voice "{i}This is a task only you can undertake.{/i}"
+        disembodied_voice "{i}Cleanse the gloom that proliferates the world with your righteous justice.{/i}"
+        disembodied_voice "{i}Do your best, Extraordinary Detective Marshall.{/i}"
+
+        # <insert holy beam of light sfx>
+        # <fade to white>
+
+        jump act1_orenji_police_station
+
+label act1_orenji_police_station:
+    show detective_office
+    show valerie_virde neutral at right:
+        zoom 0.2
+    show marshall neutral at left:
+        zoom 0.2
+    v  "I see someone decided to take his job seriously today."
+
+    # <Fade into the outside of East Orenji Police Station background>
+
+    # <Marshall neutral on the left and Detective Virde annoyed on the right>
+
+    "The voice startles you out of your daze. You blink rapidly to reorient yourself."
+    "Despite your strange daydreaming, it seems you successfully made your way to the police station."
+
+    "Leaning on the side of the building, partly hidden by shadows, stood Detective Virde. The only thing illuminating your superior’s face is the faint glow of her cigarette. "
+
+    hide marshall
+    show marshall smile at left:
+        zoom 0.2
+    m "{i}Oh no… It’s never a good sign if she’s smoking this early. I might’ve pushed my luck too far this week.{/i}"
+
+    m "{i} I should try my best not to anger her any further.{/i}"
+
+    "You walk up to her, trying to look at ease despite the overwhelming urge to ignore her and bolt inside to the safety of your office."
+
+    "You don’t want a longer and harsher tirade from her later on, though."
+
+    m "Good morning ma’am!"
+
+    v "Do you want to explain to me why this is the first time in a week you’ve been on time?"
+
+    "unfortunately, we will not know why this is the first time he's been on time! the game will be finished eventually"
 
 
 label act1_crimescene:
+    
     play music normalscene
     scene crime_scene
     show marshall neutral at left:
@@ -200,7 +271,7 @@ label act1_crimescene_menu:
     menu:
         "Collected evidence can be seen within the Preferences menu."
 
-        "Examine the dead body." if not "bodyExamination" in evidenceFound:
+        "Examine the dead body." if "bodyExamination" not in evidenceFound:
             """
             You search for a clean corner and carefully lift the tarp up to expose the face, making sure to not have direct contact with any of the blood.
 
