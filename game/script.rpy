@@ -115,6 +115,9 @@ label act1_start:
     """
 
     default act1_kartoon_seen = False
+    default act1_ddnews_seen = False
+    default act1_usabn_seen = False
+    default act1_oln_seen = False
     default one_show_left = True
     jump act1_tv_menu
 
@@ -122,7 +125,7 @@ label act1_start:
 label act1_tv_menu:   
     menu:
         # At the moment, the only one of these that's complete is DD News.
-        "DD News":
+        "DD News" if not act1_ddnews_seen:
             "It flips to the channel the moment you think of it."
             # The characters for this are set to say everything in italics, so we don't need to add that here.
             nm "What's up everybody, this is the Daily Downer News Channel!"
@@ -134,8 +137,9 @@ label act1_tv_menu:
             nf "But isn't the government in total massive crippling debt? Where will they get the billions of dollars?"
             nm "Haha, they'll just take that money away from the school systems and police departments. Like usual!"
             nf "That is so true, Brian! Well that's all for our morning report, we hope you have a dreadful day. That's DD News!"
+            $ act1_ddnews_seen = True
 
-        "USABN":
+        "USABN" if not act1_usabn_seen:
             "It flips to the channel the moment you think of it."
             nm """
             This is USABN, the only broadcasting network bringing you the truth, and only the honest truth.
@@ -154,8 +158,9 @@ label act1_tv_menu:
             """
 
             "The program ends. Finally."
+            $ act1_usabn_seen = True
 
-        "Orenji Local News":
+        "Orenji Local News" if not act1_oln_seen:
             "It flips to the channel the moment you think of it."
             nf "{i}Thank you for tuning in to OLN, your local news channel for everything happening in Orenji.{/i}"
             nf "{i}The vehicular manslaughter case that shocked the town three months ago still has no clear perpetrator.{/i}"
@@ -165,6 +170,7 @@ label act1_tv_menu:
             r "{i}Our investigation team is working hard to unveil the truth behind the tragedy. We offer our heartfelt condolences to the family of the victim, and hope to finally bring this perpetrator to justice.{/i}"
             r "{i}If you have any tips related to the incident, please call…{/i}"
             "The program ends."
+            $ act1_oln_seen = True
 
 
         "Kartoon Network" if not act1_kartoon_seen:
@@ -188,20 +194,21 @@ label act1_tv_menu:
         "How can you protect them? "
         "Your tired eyes blink at the TV screen. "
 
-        # <insert holy beam of light sfx, fade in and fade out white screen quickly (flash)>
+        play sound beaming
+        show television with Fade(0.5, 1.0, 0.5, color="#ffffff")
 
         "A comforting voice rumbles from the tinny speakers."
         disembodied_voice "{i}This is a task only you can undertake.{/i}"
         disembodied_voice "{i}Cleanse the gloom that proliferates the world with your righteous justice.{/i}"
         disembodied_voice "{i}Do your best, Extraordinary Detective Marshall.{/i}"
 
-        # <insert holy beam of light sfx>
+        play sound beaming
         # <fade to white>
 
         jump act1_orenji_police_station
 
 label act1_orenji_police_station:
-    show detective_office
+    scene detective_office with Fade(0.5, 1.0, 0.5, color="#ffffff")
     show valerie_virde neutral at right:
         zoom 0.2
     show marshall neutral at left:
