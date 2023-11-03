@@ -303,6 +303,8 @@ screen navigation():
 
             textbutton _("History") action ShowMenu("history")
 
+            textbutton _("Evidence") action ShowMenu("evidence")
+
             textbutton _("Save") action ShowMenu("save")
 
         textbutton _("Load") action ShowMenu("load")
@@ -1605,3 +1607,32 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 900
+
+
+## Custom screens for this project go here ##############
+##
+## Evidence screen
+##
+## For each item that can be found as evidence in script.rpy,
+## add an entry to this menu similar to what's already there.
+## Feel free to add in-depth descriptions to the text for each one.
+## For now I left it as just the names of all the items.
+
+screen evidence():
+    tag menu
+
+    use game_menu(_("Evidence"), scroll="viewport"):
+        vbox:
+            label _("Evidence")
+
+            if len(evidenceFound) == 0:
+                text _("No evidence found so far.")
+
+            if "bodyExamination" in evidenceFound:
+                text _("Body examination")
+
+            if "ransomNote" in evidenceFound:
+                text _("Ransom note")
+
+            if "bloodySwitchblade" in evidenceFound:
+                text _("Bloody switchblade")

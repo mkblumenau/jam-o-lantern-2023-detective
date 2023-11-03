@@ -133,8 +133,14 @@ label act1_crimescene:
 
 label act1_crimescene_menu:
     # If no conditions are available, it will just bypass the menu.
+    # Also, remember to edit the evidence menu in screens.rpy
+    # so it has all the items that can be found as evidence,
+    # either here or in other parts of the script.
+    
     show marshall thinking
     menu:
+        "Collected evidence can be seen within the Preferences menu."
+
         "Examine the dead body." if not "bodyExamination" in evidenceFound:
             """
             You search for a clean corner and carefully lift the tarp up to expose the face, making sure to not have direct contact with any of the blood.
@@ -142,12 +148,12 @@ label act1_crimescene_menu:
             Underneath was a boy wearing an East Orenji High School uniform. His face is contorted in ghastly shock.
             """
 
-            m realization "{i}Wait, is that… the Chief's son?{/i}"
+            m realization "{i}Wait, is that... the Chief's son?{/i}"
             "You've seen Maximus Rismaune around at holiday parties hosted by the Chief's family, but you were never interested in interacting with him despite his importance."
             m neutral "{i}Not even the Chief himself is safe now huh?{/i}"
             m "{i}Makes sense why Detective Virde seemed off this morning.{/i}"
-            "Dropping the tarp, you kneel down next to the body and lay a hand on its shoulder. It’s warm to the touch and no rigor seems to be present yet."
-            m focused "{i}Time of death must be fairly recent then. Around three hours ago, maybe.{/i}"
+            "Dropping the tarp, you kneel down next to the body and lay a hand on its shoulder. It's warm to the touch and no rigor seems to be present yet."
+            m thinking "{i}Time of death must be fairly recent then. Around three hours ago, maybe.{/i}"
             "You drag the trap further down to reveal more of the upper body, which is covered in deep lacerations."
             m "{i}Looks to be the work of a knife.{/i}"
 
@@ -249,9 +255,9 @@ label act1_crimescene_surroundings_search:
 
 label act1_crimescene_post_exam:
     m neutral "{i}That seems to be all the evidence I can get from here.{/i}"
-    m @focused "{i}Hmm… My strongest lead right now would be whoever this 'Hibiki' kid is.{/i}"
+    m @ thinking "{i}Hmm… My strongest lead right now would be whoever this 'Hibiki' kid is.{/i}"
     m "{i}Seems straightforward enough. Not only does he seem to have a connection to the Chief's son, but there's also a knife with his name on it at the crime scene.{/i}"
-    m smiling "{i}I didn't expect to determine a suspect so soon… I guess it's just my lucky day.{/i}"
+    m smile "{i}I didn't expect to determine a suspect so soon… I guess it's just my lucky day.{/i}"
     jump act2
 
 
