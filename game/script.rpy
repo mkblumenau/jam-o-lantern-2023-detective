@@ -61,12 +61,21 @@ image television:
     "/images/backgrounds/television.png"
 
 
-# Define sounds.
-define audio.beaming = "/audio/beaming-mirror-1.ogg"
-define audio.pageflip = "/audio/page-flip.ogg"
-define audio.penclick = "/audio/pen-click.wav"
-define audio.tablepound = "/audio/table-pound.ogg"
-define audio.static = "/audio/tv-static.ogg"
+# Define SFX.
+define audio.beaming = "/audio/sfx/beaming-mirror-1.ogg"
+define audio.pageflip = "/audio/sfx/page-flip.ogg"
+define audio.penclick = "/audio/sfx/pen-click.wav"
+define audio.tablepound = "/audio/sfx/table-pound.ogg"
+define audio.static = "/audio/sfx/tv-static.ogg"
+
+
+# Define audio.
+define audio.interrogation = "/audio/music/Interrogation.wav"
+define audio.menumusic = "/audio/music/Menu_Music.mp3"
+define audio.normalscene = "/audio/music/Normal_Scene_Music.mp3"
+define audio.waltz = "/audio/music/ Waltz 23.11.2.wav"
+define audio.mystery1 = "/audio/music/Mystery 1 23.11.2.wav"
+define audio.mystery2 = "/audio/music/Mystery 2 23.11.2.wav"
 
 
 # The game starts here.
@@ -132,6 +141,7 @@ label act1_start:
 
 
 label act1_crimescene:
+    play music normalscene
     scene crime_scene
     show marshall neutral at left:
         zoom 0.2
@@ -282,6 +292,7 @@ label act1_crimescene_post_exam:
     m @ thinking "{i}Hmm… My strongest lead right now would be whoever this 'Hibiki' kid is.{/i}"
     m "{i}Seems straightforward enough. Not only does he seem to have a connection to the Chief's son, but there's also a knife with his name on it at the crime scene.{/i}"
     m smile "{i}I didn't expect to determine a suspect so soon… I guess it's just my lucky day.{/i}"
+    stop music
     jump act2
 
 
