@@ -20,9 +20,20 @@ image cover_text:
 image marshall_end:
     "/images/splash/marshall end.png"
 
+image hibiki_arrested_end:
+    "/images/splash/hibiki arrested end.png"
+
+image jax_arrested_end:
+    "/images/splash/jax arrested end.png"
+
 image marshall_arrested_end:
     "/images/splash/marshall arrested end.png"
 
+image valerie_point_splash:
+    "images/splash/valerie point splash art.png"
+
+
+# Define images used for items.
 image ransom_note:
     "/images/items/ransom note.png"
 
@@ -31,6 +42,23 @@ image remote:
 
 image switchblade:
     "/images/items/switchblade.png"
+
+
+# Define background images.
+image crime_scene:
+    "/images/backgrounds/crime scene.png"
+
+image detective_office:
+    "/images/backgrounds/detective office.png"
+
+image interrogation_room:
+    "/images/backgrounds/interrogation room.png"
+
+image schoolyard:
+    "/images/backgrounds/schoolyard.png"
+
+image television:
+    "/images/backgrounds/television.png"
 
 
 # Define sounds.
@@ -54,9 +82,8 @@ label start:
 
 
 label act1_start:
-
-    #Add the TV background and music once we have them.
-    scene bg room
+    scene television
+    play music static # Putting this on the music channel means that it will loop by default.
 
     """
     You've seen this scene many times before.
@@ -100,16 +127,15 @@ label act1_start:
         "Kartoon Network":
             "It flips to the channel the moment you think of it."
 
+    stop music
     jump act1_crimescene
 
 
 label act1_crimescene:
-    # scene with crime scene background, once we have that
-    scene bg crimescene
+    scene crime_scene
     show marshall neutral at left:
         zoom 0.2
     
-
     """
     You step into the alleyway and glance around, shivering at the noticeable drop in temperature. The buildings on all three sides seem to loom over and close in on you, making the space feel suffocating.
 
@@ -128,15 +154,13 @@ label act1_crimescene:
 
     jump act1_crimescene_menu
 
-    #jump act2
-
 
 label act1_crimescene_menu:
     # If no conditions are available, it will just bypass the menu.
     # Also, remember to edit the evidence menu in screens.rpy
     # so it has all the items that can be found as evidence,
     # either here or in other parts of the script.
-    
+
     show marshall thinking
     menu:
         "Collected evidence can be seen within the Preferences menu."
