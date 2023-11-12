@@ -208,6 +208,55 @@ label act1_tv_menu:
         jump act1_orenji_police_station
 
 label act1_orenji_police_station:
+    scene black with Fade(1.5, 0.0, 0.5)
+    "{b}Orenji Police Station{/b}"
+
+    
+    play music normalscene
+    show valerie_virde neutral at right:
+        zoom 0.2
+
+    v "Huh, you actually made it on time today."
+
+    scene detective_office with Fade(0.5, 1.0, 0.5, color="#ffffff")
+    show valerie_virde neutral at right:
+        zoom 0.2
+    show marshall neutral at left:
+        zoom 0.2
+    
+    "The voice startles you out of your daze. Apparently you were daydreaming on your walk to work."
+    m smile "Oh- good morning ma'am!"
+    m laugh "Are you proud of me? Nine o'clock on the dot."
+    v annoyed "Don't push your luck. This doesn't make up for the fact you were late all week."
+    show marshall neutral
+    menu:
+        "Sorry for the trouble":
+            m smile "Sorry for the trouble."
+            v neutral "Just don't make it a habit, you know how uptight the Chief can get about these things."
+
+        "My bad.":
+            m neutral "My bad."
+            v neutral "Just don't make it a habit, you know how uptight the Chief can get about these things."
+
+        "Shouldn't you be at your desk?":
+            m laugh "Shouldn't you be at your desk?"
+            v "Watch it. I'm still your superior."
+            v "Besides, I wouldn't need a smoke break this early in the morning if people came to work on time {i}consistently...{/i}."
+            m "Heh, noted."
+
+    v neutral "What’s the hold up, anyway? Late riser?"
+    m laugh "Quite the opposite, actually. I tend to get carried away on my morning walks."
+    m thinking "Which, I understand, is completely my fault. But I’m here now."
+    v "Alright, alright. In any case, let’s move onto more pressing matters."
+    v annoyed "Cases have been popping up left and right lately, so we can’t afford to have OPD’s golden boy have his head in the clouds."
+    v thinking "On top of that, the Chief has been especially difficult to work with…"
+
+    "This is what we have for now, so we're skipping ahead a little."
+    jump act1_crimescene
+
+
+label act1_orenji_police_station_old:
+    # This was in the script previously, but it seems to have been removed.
     scene detective_office with Fade(0.5, 1.0, 0.5, color="#ffffff")
     show valerie_virde neutral at right:
         zoom 0.2
