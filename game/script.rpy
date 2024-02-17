@@ -225,6 +225,7 @@ label act1_orenji_police_station:
         zoom 0.2
     
     "The voice startles you out of your daze. Apparently you were daydreaming on your walk to work."
+    "Your senior, Detective Virde, is lighting a morning cigarette outside of the police station."
     m smile "Oh- good morning ma'am!"
     m laugh "Are you proud of me? Nine o'clock on the dot."
     v annoyed "Don't push your luck. This doesn't make up for the fact you were late all week."
@@ -248,8 +249,57 @@ label act1_orenji_police_station:
     m laugh "Quite the opposite, actually. I tend to get carried away on my morning walks."
     m thinking "Which, I understand, is completely my fault. But I’m here now."
     v "Alright, alright. In any case, let’s move onto more pressing matters."
-    v annoyed "Cases have been popping up left and right lately, so we can’t afford to have OPD’s golden boy have his head in the clouds."
+    v annoyed "Incidents have been popping up left and right lately, so we can’t afford to have OPD’s golden boy have his head in the clouds."
     v thinking "On top of that, the Chief has been especially difficult to work with…"
+
+    "She sighs. You notice the heavy bags underneath her eyes as she takes a drag from her cigarette."
+    "You wonder if the weight of responsibility was getting to her too."
+
+    m bigsmile "Please, don’t worry. I’ll get those cases cracked as soon as possible, you can count on me."
+    v laugh "Hah... you’re confident, Marshall."
+    v smile "You genuinely are an admirable detective, you know? I’m always amazed at your efficiency and intuition."
+    v thinking "But you still lack experience. You can collect all the evidence you want, but if you don’t know how to convince people to cooperate with your investigation..."
+    v "...You might find your case crumbling apart in your hands."
+    v smile "What I'm trying to say is, you should work on {b}managing your reputation{b}."
+
+    play sound beaming
+    show detective_office with Fade(0.5, 1.0, 0.5, color="#ffffff")
+
+    # show Virde's reputation bar here starting at 7/10
+    default valerie_virde_reputation = 7
+    show screen reputation_bar("Detective Virde", valerie_virde_reputation, 0)
+
+    """
+    {i}Managing your reputation is an invaluable skill. You must gain the trust of the people around you.{/i}
+    
+    {i}Some dialogue options will increase your reputation, while others will decrease it.{/i}
+    
+    {i}Do your best to not let your reputation hit rock bottom.{/i}
+    """
+
+    show detective_office with Fade(0.5, 1.0, 0.5, color="#ffffff")
+    v neutral "Are you still with me, Marshall?"
+
+    # choice menu
+    menu:
+        "Yes ma'am!":
+            #+2 reputation with Virde
+            $ valerie_virde_reputation += 2
+            show screen reputation_bar("Detective Virde", valerie_virde_reputation, 0)
+
+            m bigsmile "Yes ma'am!"
+            v smile "Alright, I trust you. You’re quick on the uptake, even if you zone out sometimes."
+
+        "There's voices in my head!":
+            #-2 reputation with Virde
+            $ valerie_virde_reputation -= 2
+            show screen reputation_bar("Detective Virde", valerie_virde_reputation, 0)
+
+            m realization "There's voices in my head!"
+            v annoyed "..."
+            m thinking "..."
+            m bigsmile "...Sorry."
+            v neutral "You are strange sometimes."
 
     "This is what we have for now, so we're skipping ahead a little."
     jump act1_crimescene
@@ -467,4 +517,16 @@ screen bar_example(inputValue, xalignValue):
         xsize 500
         bar:
             value StaticValue(inputValue, 100)
- 
+
+screen reputation_bar(characterName, inputValue, xalignValue):
+    # inputValue is the percentage that you want the bar to be full.
+    frame:
+        xalign xalignValue ypos 50
+        xsize 500
+        ysize 200
+        vbox:
+            text characterName:
+                pos (0.5, 0.0)
+                anchor (0.5, 0.0)
+            bar:
+                value StaticValue(inputValue, 10)
